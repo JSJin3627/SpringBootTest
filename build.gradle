@@ -1,7 +1,7 @@
 buildscript {
     //스프링부트의 전역 변수를 형성하고 그 릴리즈 버전을 2.1.9로 사용하겠단 의미다.
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.3.12.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -21,7 +21,6 @@ apply plugin: 'io.spring.dependency-management'
 //주의: com.test.page 는 처음에 작성했던 그룹과 일치해야 한다.
 group 'com.test.page'
 version '1.0-SNAPSHOT-'
-sourceCompatibility = 1.8
 //라이브러리들을 어떤 원격 저장소에서 받을 것인지 정한다.
 //기본적으로 mavencentral을 많이 사용하지만 최근에는 jcenter도 사용하는 추세다.
 repositories {
@@ -31,18 +30,27 @@ repositories {
 //프로젝트 개발에 필요한 의존성을 선언하는 장소다.
 //스프링부트web, 롬복, jpa등등을 사용할 수 있는 장소다.
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compileOnly('org.springframework.boot:spring-boot-starter-web')
     
     //  Lombok 적용하기
-    compile('org.projectlombok:lombok')
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor ('org.projectlombok:lombok')
 
     //  Spring Data JPA 적용하기
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('com.h2database:h2')
+    compileOnly('org.springframework.boot:spring-boot-starter-data-jpa')
+    compileOnly('com.h2database:h2')
 
     //  mustache 적용
-    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compileOnly('org.springframework.boot:spring-boot-starter-mustache')
 
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    //  test
+    testCompileOnly('org.springframework.boot:spring-boot-starter-web')
+    testCompileOnly('org.springframework.boot:spring-boot-starter-test')
+    testCompileOnly('org.springframework.boot:spring-boot-starter-data-jpa')
+    testCompileOnly('com.h2database:h2')
+    testCompileOnly('org.springframework.boot:spring-boot-starter-mustache')
+
+
 
 }
+
