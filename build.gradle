@@ -43,13 +43,16 @@ dependencies {
     //  mustache 적용
     compileOnly('org.springframework.boot:spring-boot-starter-mustache')
 
+    //  Spring Security 설정
+    compileOnly('org.springframework.boot:spring-boot-starter-oauth2-client')
+
     //  test
     testCompileOnly('org.springframework.boot:spring-boot-starter-web')
     testCompileOnly('org.springframework.boot:spring-boot-starter-test')
     testCompileOnly('org.springframework.boot:spring-boot-starter-data-jpa')
     testCompileOnly('com.h2database:h2')
     testCompileOnly('org.springframework.boot:spring-boot-starter-mustache')
-
+    testCompileOnly('org.springframework.boot:spring-boot-starter-oauth2-client')
 
 
 }
